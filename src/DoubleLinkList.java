@@ -51,9 +51,9 @@ public class DoubleLinkList {
                     break;
                 case 6 : deleteEnd();
                     break;
-                case 7: //deleteNode();
+                case 7:  deleteNode();
                     break;
-                case 8:// findNode();
+                case 8:  findNode();
                     break;
                 case 9: readList();
                     break;
@@ -142,6 +142,49 @@ public class DoubleLinkList {
         (LAST.BACK).FORW = null;
         LAST = LAST.BACK;
     }
+
+    //DELETE THE NODE FROM A PARTICULAR POSITION FROM THE DOUBLE LINK LIST
+    public static void deleteNode(){
+        int pos , i = 1;
+        System.out.println("ENTER THE POSITION TO DELETE THE ELEMENT");
+        pos = scan.nextInt();
+        PTR = FIRST;
+
+        while(PTR!= null && i<pos){
+            LOCP = PTR;
+            PTR = PTR.FORW;
+            ++i;
+        }
+        if(PTR == null){
+            System.out.println("POSITION NOT FOUND");
+        }else{
+            LOCP.FORW = PTR.FORW;
+            (PTR.FORW).BACK = LOCP;
+        }
+    }
+
+    //FIND A NODE IN THE DOUBLE LINK LIST
+    public static void findNode(){
+        int ITEM , count =0 , position = 0;
+        System.out.print("\nENTER THE VALUE TO SEARCH : ");
+        ITEM = scan.nextInt();
+        PTR = FIRST;
+        while(PTR!=null){
+            if(PTR.getInfo()==ITEM){
+                count +=1;
+                position=count;
+                break;
+            }
+            PTR = PTR.FORW;
+            count +=1;
+        }
+        if(position!=0){
+            System.out.println("NODE FIND AT " + position + " POSITION");
+        }else{
+            System.out.println("NODE NOT FOUND");
+        }
+    }
+
 
     //READING NODE OF DOUBLE LINK LIST
     public static void readList(){
